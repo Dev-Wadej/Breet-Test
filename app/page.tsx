@@ -1,103 +1,119 @@
+"use client";
+import Header from "@/components/header";
+import ScrollFadeIn from "@/components/scroll-fade-in";
+import React from "react";
+import heroimg from "@/assets/images/hero.png";
+import user1 from "@/assets/images/user-1.png";
+import emailIllus from "@/assets/svgs/email-illus.svg";
 import Image from "next/image";
+import BlogCard from "@/components/blog-card";
+import { blogContent } from "@/utils/blog";
+import Footer from "@/components/footer";
 
-export default function Home() {
+const Page = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="font-manrope font-extrabold">
+      <Header />
+      <section className="mt-28 md:mt-40">
+        <div className="mt-8">
+          <ScrollFadeIn direction="down">
+            <h1 className="text-center text-primary font-medium font-open-sans">
+              Blog
+            </h1>
+          </ScrollFadeIn>
+          <ScrollFadeIn delay={0.1}>
+            <h2 className="text-center text-primary mt-4 text-6xl font-normal ">
+              Thoughts and words
+            </h2>
+          </ScrollFadeIn>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <ScrollFadeIn delay={0.17}>
+          <div className="max-w-screen-xl mx-auto flex items-center justify-between mt-20">
+            <ScrollFadeIn direction="left">
+              <Image src={heroimg} alt="An illustration of the hero" />
+            </ScrollFadeIn>
+            <ScrollFadeIn direction="right">
+              <div className="font-open-sans flex items-center gap-4">
+                <span className="font-bold text-primary ">Category</span>
+                <span className="font-normal text-gray-500">
+                  November 22, 2021
+                </span>
+              </div>
+              <h3 className="text-5xl font-light max-w-xl leading-[1.3] mt-8">
+                Pitch termsheet backing validation focus release.
+              </h3>
+              <div className="flex items-center gap-3 mt-8">
+                <Image src={user1} alt="User Image" />
+                <span className="font-open-sans font-normal">
+                  Chandler Bing
+                </span>
+              </div>
+            </ScrollFadeIn>
+          </div>
+        </ScrollFadeIn>
+      </section>
+      <hr className="text-primary/70 h-[1px]  w-full max-w-screen-xl mx-auto my-14" />
+      <section className="max-w-5xl mx-auto">
+        <ScrollFadeIn direction="down">
+          <h2 className="text-primary my-4 mb-6 text-4xl font-normal ">
+            Latest news
+          </h2>
+        </ScrollFadeIn>
+
+        <div className="grid lg:grid-cols-3 gap-4 gap-y-16">
+          {blogContent.map((content, index) => (
+            <ScrollFadeIn
+              key={content.description}
+              direction="up"
+              delay={(index % 3) * 0.1}
+            >
+              <BlogCard {...content} />
+            </ScrollFadeIn>
+          ))}
+        </div>
+
+        <ScrollFadeIn direction="up">
+          <div className="text-center mt-14">
+            <button
+              aria-label="Load more"
+              className={`font-bold border-2 border-primary text-primary rounded-full py-2.5 px-10  `}
+            >
+              Load more
+            </button>
+          </div>
+        </ScrollFadeIn>
+      </section>
+
+      <ScrollFadeIn direction="up">
+        <section className="max-w-screen-xl mx-3 xl:mx-auto bg-primary h-96 rounded-3xl relative overflow-hidden mt-20">
+          <span className="absolute top-0 right-0">
+            <Image src={emailIllus} alt="SVG" />
+          </span>
+          <div className="absolute  left-1/2 -translate-x-1/2 w-[45rem] h-full flex flex-col items-center justify-center">
+            <h2 className="text-center text-white mt-8 text-5xl font-normal  w-full leading-[1.4] ">
+              An enterprise template to ramp up your company website
+            </h2>
+            <div className="mt-12 flex gap-8 items-center">
+              <input
+                aria-label="Email"
+                type="text"
+                placeholder="Your email address"
+                className="border-transparent rounded-full bg-white placeholder:text-black text-black text-sm font-medium p-3 px-6 w-72"
+              />
+              <button
+                type="button"
+                aria-label="Email CTA"
+                className="text-primary bg-secondary rounded-full px-11 p-3 text-sm cursor-pointer hover:scale-95 transition-all active:scale-105"
+              >
+                Start now
+              </button>
+            </div>
+          </div>
+        </section>
+      </ScrollFadeIn>
+      <Footer />
+    </main>
   );
-}
+};
+
+export default Page;
