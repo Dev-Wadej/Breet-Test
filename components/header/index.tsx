@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import logo from "@/assets/svgs/logo.svg";
 import Image from "next/image";
+import MobileNav from "../mobile-nav";
 
 export const navLinks = [
   { name: "Product", path: "#" },
@@ -16,6 +17,7 @@ const THRESHOLD = 200;
 const Header = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,6 +49,21 @@ const Header = () => {
       window.removeEventListener("scroll", onScroll);
     };
   }, [scrollY]);
+
+  useEffect(() => {
+    if (isActive) {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
+    };
+  }, [isActive]);
 
   const showShadow = window.scrollY > THRESHOLD;
 
@@ -86,9 +103,58 @@ const Header = () => {
                 Log In
               </Link>
             </ul>
+            <button
+              title="Icon"
+              onClick={() => setIsActive(!isActive)}
+              className="w-10 h-5 flex md:hidden flex-col justify-between items-center group z-[1000]"
+            >
+              <motion.span
+                className="block w-6 h-[2px] origin-center"
+                animate={
+                  isActive
+                    ? { rotate: 45, y: 8, backgroundColor: "#181818" }
+                    : {
+                        rotate: 0,
+                        y: 0,
+                        backgroundColor: "#181818"
+                      }
+                }
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              />
+
+              <motion.span
+                className="block w-6 h-[2px] origin-center"
+                animate={
+                  isActive
+                    ? { opacity: 0 }
+                    : {
+                        opacity: 1,
+                        backgroundColor: "#181818"
+                      }
+                }
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              />
+
+              <motion.span
+                className="block w-6 h-[2px]"
+                animate={
+                  isActive
+                    ? { rotate: -45, y: -10, backgroundColor: "#181818" }
+                    : {
+                        rotate: 0,
+                        y: 0,
+                        backgroundColor: "#181818"
+                      }
+                }
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              />
+            </button>
           </div>
         </div>
       </motion.div>
+      <div className="block md:hidden">
+        <MobileNav isActive={isActive} />
+      </div>
     </nav>
   );
 };
